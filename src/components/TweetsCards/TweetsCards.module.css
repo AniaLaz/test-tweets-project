@@ -1,0 +1,133 @@
+.tweetsContainer{
+  text-align: center;
+  color:rgba(71, 28, 169, 1) ;
+   font-family: 'Montserrat';
+  font-size: 24px;
+}
+
+.tweetsList {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 20px;
+}
+
+.item {
+  position: relative;
+  height: 396px;
+  width: 308px;
+  background-color: rgba(71, 28, 169, 1);
+  border-radius: 21px;
+  padding: 28px 36px 36px 36px;
+}
+
+.text {
+  font-family: 'Montserrat';
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #ebd8ff;
+}
+.textBottom {
+  font-family: 'Montserrat';
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #ebd8ff;
+  margin-top: 18px;
+}
+.imgFon {
+  height: 168px;
+  width: 308px;
+  /* padding: 28px 36px 18px 36px; */
+}
+
+.imgString {
+  position: absolute;
+  left: 0;
+  top: 214px;
+}
+.imgRingBox {
+  position: absolute;
+  left: 150px;
+  top: 178px;
+  border-radius: 50%;
+
+  /* background-color: rgba(71, 28, 169, 1); */
+  height: 80px;
+  width: 80px;
+}
+
+.imgRingPhoto {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  border-radius: 50%;
+  height: 61px;
+  width: 61px;
+  background-color: rgba(71, 28, 169, 1);
+  overflow: hidden;
+}
+
+.imgRin {
+  z-index: 99;
+  height: 80px;
+  width: 80px;
+}
+
+.avatar{
+  width: 100%;
+
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+}
+.logo:hover {
+  border: 1px solid rgb(89, 48, 185);
+}
+
+.boxBottom {
+  text-align: center;
+  margin-top: 88px;
+}
+.button {
+  min-width: 196px;
+  padding: 14px;
+  border-radius: 4px;
+  background-color: #ebd8ff;
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+  font-size: 18px;
+  line-height: 22px;
+  color: #373737;
+  margin-top: 26px;
+}
+
+.button:hover {
+  background-color:  #c695fa;
+}
+
+.buttonTrue {
+  min-width: 196px;
+  padding: 14px;
+  border-radius: 4px;
+ background-color: #5cd3a8;
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+  font-size: 18px;
+  line-height: 22px;
+  color: #373737;
+  margin-top: 26px;
+}
+
+.buttonTrue:hover {
+   background-color: #8adfc0;
+}

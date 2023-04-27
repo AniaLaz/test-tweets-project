@@ -1,0 +1,17 @@
+.btnBack {
+  padding: 20px;
+  margin-top: 30px;
+  background-color: rgba(71, 28, 169, 1);
+  border: 1px solid rgba(71, 28, 169, 1);
+  border-radius: 10px;
+}
+
+.btnBackText {
+  color: rgba(235, 216, 255, 1);
+  text-decoration: none;
+}
+
+.btnBack:hover {
+  background-color:rgb(96, 61, 179);;
+  border: 1px solid rgba(71, 28, 169, 1);
+}
