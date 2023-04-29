@@ -17,25 +17,31 @@ export const TweetsCardOne = ({
   tweetsArr,
 }) => {
   const [oneCard, setOneCard] = useState(null);
-  const [oneCardFolow, setOneCardFolow] = useState(null);
   const [flag, setFlag] = useState(followersFlag);
   const [folowwersF, setfolowwersF] = useState(false);
 
-    useEffect(() => {
-      
+  useEffect(() => {
     const updateCard = async id => {
       try {
         if (oneCard) {
-          await axios.put(`/users/${id}`, {
-            followers: oneCard.followers + 1,
-            followersFlag: true,
-          });
-          setfolowwersF(oneCard.followers + 1);
-
-            console.log('+');
-             return;
+          {flag
+              ? await axios.put(`/users/${id}`, {
+                  followers: oneCard.followers + 1,
+                  followersFlag: true,
+                })
+              : await axios.put(`/users/${id}`, {
+                  followers: oneCard.followers - 1,
+                  followersFlag: false,
+                });
           }
-         return;
+          {flag
+              ? setfolowwersF(oneCard.followers + 1)
+              : setfolowwersF(oneCard.followers - 1);
+          }
+          return;
+        }
+
+        return;
       } catch (error) {
         console.log(error.message);
       }
@@ -45,30 +51,7 @@ export const TweetsCardOne = ({
     }
   }, [oneCard, tweetsArr]);
 
-  useEffect(() => {
-    const updateCardFolow = async id => {
-      try {
-        if (oneCardFolow) {
-          await axios.put(`/users/${id}`, {
-            followers: oneCardFolow.followers - 1,
-            followersFlag: false,
-          });
-          
-          setfolowwersF(oneCardFolow.followers - 1);
-            console.log('-');
-            return
-          }
-          return;
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    if (oneCardFolow) {
-      updateCardFolow(oneCardFolow.id);
-    }
-  }, [oneCardFolow, tweetsArr, folowwersF]);
-
-  const chengeFollowers = async ({ id }) => {
+  const click = async ({ id }) => {
     try {
       return setOneCard((await axios.get(`/users/${id}`)).data);
     } catch (error) {
@@ -76,13 +59,6 @@ export const TweetsCardOne = ({
     }
   };
 
-  const delitFollowers = async ({ id }) => {
-    try {
-      return setOneCardFolow((await axios.get(`/users/${id}`)).data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
   return (
     <li className={css.item}>
       <button type="button" className={css.logo}>
@@ -116,12 +92,12 @@ export const TweetsCardOne = ({
           </div>
         )}
 
-        { flag ? (
+        {flag ? (
           <button
             type="button"
             className={css.buttonTrue}
             onClick={() => {
-              delitFollowers({ id });
+              click({ id });
               setFlag(false);
             }}
           >
@@ -132,7 +108,7 @@ export const TweetsCardOne = ({
             type="button"
             className={css.button}
             onClick={() => {
-              chengeFollowers({ id });
+              click({ id });
               setFlag(true);
             }}
           >
