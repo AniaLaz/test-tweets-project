@@ -6,60 +6,77 @@ import imgFon from '../../img/pictureFone_opt.svg';
 import imgString from '../../img/rectangle.svg';
 import imgRing from '../../img/ring.svg';
 import boy from '../../img/boy.svg';
-
 // axios.defaults.baseURL = 'https://63bc0c08fa38d30d85b994d7.mockapi.io';
 
-export const TweetsCards = ({ tweetsArr }) => {
-  console.log('tweetsArr TweetsCards', tweetsArr);
+export const TweetsCards = ({ tweetsArr, update }) => {
   const [oneCard, setOneCard] = useState(null);
+  const [oneCardFolow, setOneCardFolow] = useState(null);
+  // const [flag, setFlag] = useState(false);
 
 
-  console.log('tweetsArr TweetsCards2', tweetsArr);
-  const updateCard = async ({ id }) => {
+  useEffect(() => {
+    if (oneCard) {
+      const cardId = oneCard.id;
+      updateCard(cardId);
+      // update(oneCard);
+    }
+  }, [oneCard]);
+
+  useEffect(() => {
+    if (oneCardFolow) {
+      const cardFolowId = oneCardFolow.id;
+      updateCardFolow(cardFolowId);
+      // update(oneCardFolow);
+    }
+  }, [oneCardFolow]);
+
+  const chengeFollowers = async ({ id }) => {
     try {
-      console.log('chengeFollowers 3');
+      return setOneCard((await axios.get(`/users/${id}`)).data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const updateCard = async id => {
+    try {
       if (oneCard) {
         const chengeFollower = await axios.put(`/users/${id}`, {
           followers: oneCard.followers + 1,
           followersFlag: true,
         });
+        //     const index = tweetsArr.findIndex(el => el.id === id);
+        // const arr = tweetsArr[index];
+        // const updateArr = () => {
+        //   return tweetsArr.splice(index, 1, { followersFlag: true });
+        // };
+
+        // updateArr();
+
+        console.log('+');
       }
     } catch (error) {
-      console.log('chengeFollowers ---3');
       console.log(error.message);
     }
   };
 
-  const chengeFollowers = async ({ id }) => {
-    console.log('chengeFollowers 1');
-    try {
-      console.log('chengeFollowers 2');
-      const getOneCard = await axios.get(`/users/${id}`);
-      console.log('getOneCard.data', getOneCard.data);
-      setOneCard(getOneCard.data);
-      updateCard({ id });
-    } catch (error) {
-      console.log('chengeFollowers ----2');
-      console.log(error.message);
-    }
-  };
   const delitFollowers = async ({ id }) => {
-    console.log(id);
-
     try {
-      const getOneCard = await axios.get(`/users/${id}`);
-      console.log(getOneCard.data);
-      setOneCard(getOneCard.data);
-      if (oneCard) {
-        try {
-          const chengeFollower = await axios.put(`/users/${id}`, {
-            followers: oneCard.followers - 1,
-            followersFlag: false,
-          });
-          console.log(chengeFollower.data);
-        } catch (error) {
-          console.log(error.message);
-        }
+      return setOneCardFolow((await axios.get(`/users/${id}`)).data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const updateCardFolow = async id => {
+    try {
+      if (oneCardFolow) {
+        const chengeFollower = await axios.put(`/users/${id}`, {
+          followers: oneCardFolow.followers - 1,
+          followersFlag: false,
+        });
+
+        console.log('-');
       }
     } catch (error) {
       console.log(error.message);
