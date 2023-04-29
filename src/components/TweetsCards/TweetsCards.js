@@ -14,12 +14,66 @@ export const TweetsCards = ({ tweetsArr }) => {
   // const [flag, setFlag] = useState(false);
 
   useEffect(() => {
+      const updateCard = async id => {
+        try {
+          if (oneCard) {
+            await axios.put(`/users/${id}`, {
+              followers: oneCard.followers + 1,
+              followersFlag: true,
+            });
+            const index = tweetsArr.findIndex(el => el.id === id);
+            const card = tweetsArr[index];
+            const updateArr = () => {
+              return tweetsArr.splice(index, 1, {
+                user: card.user,
+                tweets: card.tweets,
+                followers: card.followers + 1,
+                avatar: card.avatar,
+                id: card.id,
+                followersFlag: true,
+              });
+            };
+            updateArr();
+            console.log('+');
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
     if (oneCard) {
       updateCard(oneCard.id);
     }
   }, [oneCard]);
 
   useEffect(() => {
+      const updateCardFolow = async id => {
+        try {
+          if (oneCardFolow) {
+            await axios.put(`/users/${id}`, {
+              followers: oneCardFolow.followers - 1,
+              followersFlag: false,
+            });
+            const index = tweetsArr.findIndex(el => el.id === id);
+            const card = tweetsArr[index];
+            const updateArr = () => {
+              return tweetsArr.splice(index, 1, {
+                user: card.user,
+                tweets: card.tweets,
+                followers: card.followers - 1,
+                avatar: card.avatar,
+                id: card.id,
+                followersFlag: false,
+              });
+            };
+
+            updateArr();
+
+            console.log('-');
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
     if (oneCardFolow) {
       updateCardFolow(oneCardFolow.id);
     }
@@ -33,32 +87,7 @@ export const TweetsCards = ({ tweetsArr }) => {
     }
   };
 
-  const updateCard = async id => {
-    try {
-      if (oneCard) {
-        await axios.put(`/users/${id}`, {
-          followers: oneCard.followers + 1,
-          followersFlag: true,
-        });
-        const index = tweetsArr.findIndex(el => el.id === id);
-        const card = tweetsArr[index];
-        const updateArr = () => {
-          return tweetsArr.splice(index, 1, {
-            user: card.user,
-            tweets: card.tweets,
-            followers: card.followers + 1,
-            avatar: card.avatar,
-            id: card.id,
-            followersFlag: true,
-          });
-        };
-        updateArr();
-        console.log('+');
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+
 
   const delitFollowers = async ({ id }) => {
     try {
@@ -68,34 +97,7 @@ export const TweetsCards = ({ tweetsArr }) => {
     }
   };
 
-  const updateCardFolow = async id => {
-    try {
-      if (oneCardFolow) {
-        await axios.put(`/users/${id}`, {
-          followers: oneCardFolow.followers - 1,
-          followersFlag: false,
-        });
-        const index = tweetsArr.findIndex(el => el.id === id);
-        const card = tweetsArr[index];
-        const updateArr = () => {
-          return tweetsArr.splice(index, 1, {
-            user: card.user,
-            tweets: card.tweets,
-            followers: card.followers - 1,
-            avatar: card.avatar,
-            id: card.id,
-            followersFlag: false,
-          });
-        };
 
-        updateArr();
-
-        console.log('-');
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   return (
     <div className={css.tweetsContainer}>
