@@ -21,31 +21,18 @@ export const Tweets = () => {
   const [tweetsArr, setTweetsArr] = useState([]);
   const [page, setPage] = useState(1);
   const [notCard, setNotCard] = useState(false);
-  const [flagUpdate, setFlagUpdate] = useState(false);
   const limit = 3;
 
   useEffect(() => {
     fetch({ page, limit, setTweetsArr, setNotCard });
   }, [page]);
-
-  console.log('tweetsArr2', tweetsArr);
   
-  // useEffect(() => {
-  //   console.log('flagUpdate', flagUpdate);
-  //   fetch({ page, limit, setTweetsArr, setNotCard });
-  // }, [ flagUpdate]);
+  useEffect(() => {
+    console.log('tweetsArr IIIIIIIIIIII', tweetsArr);
+
+  }, [tweetsArr]);
 
 
-  // const update = (oneCardFolow, oneCard) => {
-  //   console.log('oneCardFolow', oneCardFolow);
-  //   console.log('oneCard', oneCard);
-  //   if (oneCardFolow) {
-  //     return setFlagUpdate(true);
-  //   }
-  //   if (oneCard) {
-  //     return setFlagUpdate(true);
-  //   }
-  // };
 
   const goBack = location.state?.from ?? '/';
   const addPage = () => {

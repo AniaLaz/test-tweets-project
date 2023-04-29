@@ -8,11 +8,10 @@ import imgRing from '../../img/ring.svg';
 import boy from '../../img/boy.svg';
 // axios.defaults.baseURL = 'https://63bc0c08fa38d30d85b994d7.mockapi.io';
 
-export const TweetsCards = ({ tweetsArr, update }) => {
+export const TweetsCards = ({ tweetsArr }) => {
   const [oneCard, setOneCard] = useState(null);
   const [oneCardFolow, setOneCardFolow] = useState(null);
   // const [flag, setFlag] = useState(false);
-
 
   useEffect(() => {
     if (oneCard) {
@@ -20,7 +19,7 @@ export const TweetsCards = ({ tweetsArr, update }) => {
       updateCard(cardId);
       // update(oneCard);
     }
-  }, [oneCard]);
+  }, [oneCard, tweetsArr]);
 
   useEffect(() => {
     if (oneCardFolow) {
@@ -28,7 +27,7 @@ export const TweetsCards = ({ tweetsArr, update }) => {
       updateCardFolow(cardFolowId);
       // update(oneCardFolow);
     }
-  }, [oneCardFolow]);
+  }, [oneCardFolow, tweetsArr]);
 
   const chengeFollowers = async ({ id }) => {
     try {
@@ -41,18 +40,23 @@ export const TweetsCards = ({ tweetsArr, update }) => {
   const updateCard = async id => {
     try {
       if (oneCard) {
-        const chengeFollower = await axios.put(`/users/${id}`, {
+        await axios.put(`/users/${id}`, {
           followers: oneCard.followers + 1,
           followersFlag: true,
         });
-        //     const index = tweetsArr.findIndex(el => el.id === id);
-        // const arr = tweetsArr[index];
-        // const updateArr = () => {
-        //   return tweetsArr.splice(index, 1, { followersFlag: true });
-        // };
-
-        // updateArr();
-
+        const index = tweetsArr.findIndex(el => el.id === id);
+        const card = tweetsArr[index];
+        const updateArr = () => {
+          return tweetsArr.splice(index, 1, {
+            user: card.user,
+            tweets: card.tweets,
+            followers: card.followers + 1,
+            avatar: card.avatar,
+            id: card.id,
+            followersFlag: true,
+          });
+        };
+        updateArr();
         console.log('+');
       }
     } catch (error) {
@@ -75,6 +79,20 @@ export const TweetsCards = ({ tweetsArr, update }) => {
           followers: oneCardFolow.followers - 1,
           followersFlag: false,
         });
+        const index = tweetsArr.findIndex(el => el.id === id);
+        const card = tweetsArr[index];
+        const updateArr = () => {
+          return tweetsArr.splice(index, 1, {
+            user: card.user,
+            tweets: card.tweets,
+            followers: card.followers - 1,
+            avatar: card.avatar,
+            id: card.id,
+            followersFlag: false,
+          });
+        };
+
+        updateArr();
 
         console.log('-');
       }
