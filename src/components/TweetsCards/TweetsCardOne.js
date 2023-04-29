@@ -23,24 +23,19 @@ export const TweetsCardOne = ({
   useEffect(() => {
     const updateCard = async id => {
       try {
-        if (oneCard) {
-          {flag
-              ? await axios.put(`/users/${id}`, {
-                  followers: oneCard.followers + 1,
-                  followersFlag: true,
-                })
-              : await axios.put(`/users/${id}`, {
-                  followers: oneCard.followers - 1,
-                  followersFlag: false,
-                });
-          }
-          {flag
-              ? setfolowwersF(oneCard.followers + 1)
-              : setfolowwersF(oneCard.followers - 1);
-          }
-          return;
+        if (flag) {
+          await axios.put(`/users/${id}`, {
+            followers: oneCard.followers + 1,
+            followersFlag: false,
+          });
+          setfolowwersF(oneCard.followers + 1);
+        } else {
+          await axios.put(`/users/${id}`, {
+            followers: oneCard.followers - 1,
+            followersFlag: true,
+          });
+          setfolowwersF(oneCard.followers - 1);
         }
-
         return;
       } catch (error) {
         console.log(error.message);
@@ -49,7 +44,7 @@ export const TweetsCardOne = ({
     if (oneCard) {
       updateCard(oneCard.id);
     }
-  }, [oneCard, tweetsArr]);
+  }, [oneCard, tweetsArr, flag]);
 
   const click = async ({ id }) => {
     try {
