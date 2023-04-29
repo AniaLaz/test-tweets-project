@@ -15,19 +15,15 @@ export const TweetsCards = ({ tweetsArr }) => {
 
   useEffect(() => {
     if (oneCard) {
-      const cardId = oneCard.id;
-      updateCard(cardId);
-      // update(oneCard);
+      updateCard(oneCard.id);
     }
-  }, [oneCard, tweetsArr]);
+  }, [oneCard]);
 
   useEffect(() => {
     if (oneCardFolow) {
-      const cardFolowId = oneCardFolow.id;
-      updateCardFolow(cardFolowId);
-      // update(oneCardFolow);
+      updateCardFolow(oneCardFolow.id);
     }
-  }, [oneCardFolow, tweetsArr]);
+  }, [oneCardFolow]);
 
   const chengeFollowers = async ({ id }) => {
     try {
@@ -75,7 +71,7 @@ export const TweetsCards = ({ tweetsArr }) => {
   const updateCardFolow = async id => {
     try {
       if (oneCardFolow) {
-        const chengeFollower = await axios.put(`/users/${id}`, {
+        await axios.put(`/users/${id}`, {
           followers: oneCardFolow.followers - 1,
           followersFlag: false,
         });
