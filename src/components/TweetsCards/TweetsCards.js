@@ -14,70 +14,70 @@ export const TweetsCards = ({ tweetsArr }) => {
   // const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-      const updateCard = async id => {
-        try {
-          if (oneCard) {
-            await axios.put(`/users/${id}`, {
-              followers: oneCard.followers + 1,
+    const updateCard = async id => {
+      try {
+        if (oneCard) {
+          await axios.put(`/users/${id}`, {
+            followers: oneCard.followers + 1,
+            followersFlag: true,
+          });
+          const index = tweetsArr.findIndex(el => el.id === id);
+          const card = tweetsArr[index];
+          const updateArr = () => {
+            return tweetsArr.splice(index, 1, {
+              user: card.user,
+              tweets: card.tweets,
+              followers: card.followers + 1,
+              avatar: card.avatar,
+              id: card.id,
               followersFlag: true,
             });
-            const index = tweetsArr.findIndex(el => el.id === id);
-            const card = tweetsArr[index];
-            const updateArr = () => {
-              return tweetsArr.splice(index, 1, {
-                user: card.user,
-                tweets: card.tweets,
-                followers: card.followers + 1,
-                avatar: card.avatar,
-                id: card.id,
-                followersFlag: true,
-              });
-            };
-            updateArr();
-            console.log('+');
-          }
-        } catch (error) {
-          console.log(error.message);
+          };
+          updateArr();
+          console.log('+');
         }
-      };
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
     if (oneCard) {
       updateCard(oneCard.id);
     }
-  }, [oneCard]);
+  }, [oneCard, tweetsArr]);
 
   useEffect(() => {
-      const updateCardFolow = async id => {
-        try {
-          if (oneCardFolow) {
-            await axios.put(`/users/${id}`, {
-              followers: oneCardFolow.followers - 1,
+    const updateCardFolow = async id => {
+      try {
+        if (oneCardFolow) {
+          await axios.put(`/users/${id}`, {
+            followers: oneCardFolow.followers - 1,
+            followersFlag: false,
+          });
+          const index = tweetsArr.findIndex(el => el.id === id);
+          const card = tweetsArr[index];
+          const updateArr = () => {
+            return tweetsArr.splice(index, 1, {
+              user: card.user,
+              tweets: card.tweets,
+              followers: card.followers - 1,
+              avatar: card.avatar,
+              id: card.id,
               followersFlag: false,
             });
-            const index = tweetsArr.findIndex(el => el.id === id);
-            const card = tweetsArr[index];
-            const updateArr = () => {
-              return tweetsArr.splice(index, 1, {
-                user: card.user,
-                tweets: card.tweets,
-                followers: card.followers - 1,
-                avatar: card.avatar,
-                id: card.id,
-                followersFlag: false,
-              });
-            };
+          };
 
-            updateArr();
+          updateArr();
 
-            console.log('-');
-          }
-        } catch (error) {
-          console.log(error.message);
+          console.log('-');
         }
-      };
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
     if (oneCardFolow) {
       updateCardFolow(oneCardFolow.id);
     }
-  }, [oneCardFolow]);
+  }, [oneCardFolow, tweetsArr]);
 
   const chengeFollowers = async ({ id }) => {
     try {
@@ -87,8 +87,6 @@ export const TweetsCards = ({ tweetsArr }) => {
     }
   };
 
-
-
   const delitFollowers = async ({ id }) => {
     try {
       return setOneCardFolow((await axios.get(`/users/${id}`)).data);
@@ -96,8 +94,6 @@ export const TweetsCards = ({ tweetsArr }) => {
       console.log(error.message);
     }
   };
-
-
 
   return (
     <div className={css.tweetsContainer}>
@@ -147,44 +143,6 @@ export const TweetsCards = ({ tweetsArr }) => {
                     follow
                   </button>
                 )}
-
-                {/* {followersFlag.length > 0 ? (
-                <button
-                  type="button"
-                  className={css.buttonTrue}
-                  onClick={() => addFollowersFalse({ id, followers })}
-                >
-                  following
-                </button
-              ) : (
-                <button
-                  type="button"
-                  className={css.button}
-                  onClick={() => addFollowers({ id, followers })}
-                >
-                  follow
-                </button>
-              )} */}
-                {/* {followersFlag.map(follower => {
-                    if (follower.id !== id) {
-                    return (
-                      <button
-                        type="button"
-                        className={css.buttonTrue}
-                        onClick={() => addFollowers({ id, followers })}
-                      >
-                        following
-                      </button>
-                    );
-                  } else
-                    <button
-                      type="button"
-                      className={css.button}
-                      onClick={() => addFollowersFalse({ id, followers })}
-                    >
-                      follow
-                    </button>;
-                })} */}
               </div>
             </li>
           )
