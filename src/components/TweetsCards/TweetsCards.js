@@ -67,7 +67,6 @@ export const TweetsCards = ({ tweetsArr }) => {
           };
 
           updateArr();
-
           console.log('-');
         }
       } catch (error) {
