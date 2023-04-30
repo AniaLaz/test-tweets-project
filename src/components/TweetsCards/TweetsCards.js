@@ -8,20 +8,19 @@ export const TweetsCards = ({ tweetsArr }) => {
     <div className={css.tweetsContainer}>
       <h2>TweetsCards</h2>
       <ul className={css.tweetsList}>
-        {tweetsArr.map(
-          ({ user, id, tweets, followers, avatar, followersFlag }) => (
-            <TweetsCardOne
-              key={id}
-              user={user}
-              id={id}
-              tweets={tweets}
-              followers={followers}
-              avatar={avatar}
-              followersFlag={followersFlag}
-              tweetsArr={tweetsArr}
-            />
-          )
-        )}
+        {tweetsArr.map(tweet => (
+          <TweetsCardOne
+            key={tweet.id}
+            user={tweet.user}
+            id={tweet.id}
+            tweets={tweet.tweets}
+            followers={tweet.followers}
+            avatar={tweet.avatar}
+            followersFlag={tweet.followersFlag}
+            tweetsArr={tweetsArr}
+            tweet={tweet}
+          />
+        ))}
       </ul>
     </div>
   );

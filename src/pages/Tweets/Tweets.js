@@ -27,10 +27,10 @@ export const Tweets = () => {
     fetch({ page, limit, setTweetsArr, setNotCard });
   }, [page]);
   
-  useEffect(() => {
-    console.log('tweetsArr IIIIIIIIIIII', tweetsArr);
+  // useEffect(() => {
+  //   console.log('tweetsArr IIIIIIIIIIII', tweetsArr);
 
-  }, [tweetsArr]);
+  // }, [tweetsArr]);
 
 
 

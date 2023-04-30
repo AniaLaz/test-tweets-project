@@ -15,40 +15,36 @@ export const TweetsCardOne = ({
   avatar,
   followersFlag,
   tweetsArr,
+  tweet,
 }) => {
-  const [oneCard, setOneCard] = useState(null);
-  const [flag, setFlag] = useState(followersFlag);
+  const [flag, setFlag] = useState(false);
   const [folowwersF, setfolowwersF] = useState(false);
 
   useEffect(() => {
-    const updateCard = async id => {
-      try {
-        if (flag) {
-          await axios.put(`/users/${id}`, {
-            followers: oneCard.followers + 1,
-            followersFlag: false,
-          });
-          setfolowwersF(oneCard.followers + 1);
-        } else {
-          await axios.put(`/users/${id}`, {
-            followers: oneCard.followers - 1,
-            followersFlag: true,
-          });
-          setfolowwersF(oneCard.followers - 1);
-        }
-        return;
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    if (oneCard) {
-      updateCard(oneCard.id);
-    }
-  }, [oneCard, tweetsArr, flag]);
+    setFlag(followersFlag);
+    setfolowwersF(followers);
+  }, []);
 
-  const click = async ({ id }) => {
+  const updateCard = async id => {
     try {
-      return setOneCard((await axios.get(`/users/${id}`)).data);
+      if (!flag) {
+        console.log(flag);
+        console.log(followers);
+        console.log(folowwersF);
+        const user = await axios.put(`/users/${id}`, {
+          followers: folowwersF - 1,
+          followersFlag: true,
+        });
+
+        setfolowwersF(folowwersF - 1);
+      } else {
+        const userFalse = await axios.put(`/users/${id}`, {
+          followers: folowwersF + 1,
+          followersFlag: false,
+        });
+
+        setfolowwersF(folowwersF + 1);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -90,24 +86,26 @@ export const TweetsCardOne = ({
         {flag ? (
           <button
             type="button"
-            className={css.buttonTrue}
+            className={css.button}
             onClick={() => {
-              click({ id });
+              // click({ id });
               setFlag(false);
+              updateCard(id);
             }}
           >
-            following
+            follow
           </button>
         ) : (
           <button
             type="button"
-            className={css.button}
+            className={css.buttonTrue}
             onClick={() => {
-              click({ id });
+              // click({ id });
               setFlag(true);
+              updateCard(id);
             }}
           >
-            follow
+            following
           </button>
         )}
       </div>
