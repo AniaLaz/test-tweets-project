@@ -14,7 +14,7 @@ const Home = lazy(() =>
 );
 
 const Tweets = lazy(() =>
-  import('../../pages/Tweets/Tweets').then(module => {
+  import('../../pages/Tweets/TweetsPage').then(module => {
     return {
       ...module,
       default: module.Tweets,

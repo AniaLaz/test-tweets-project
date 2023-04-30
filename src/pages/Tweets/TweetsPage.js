@@ -1,20 +1,14 @@
 import { useLocation, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { TweetsCards } from '../../components/TweetsCards/TweetsCards';
-import css from './Tweets.module.css';
 
-import { fetchTweets } from '../../helpers/fetch';
+import css from './TweetsPage.module.css';
 
-export const fetch = ({ page, limit, setTweetsArr, setNotCard }) => {
-  fetchTweets({ page, limit }).then(response => {
-    if (page === 1) {
-      setTweetsArr(response);
-    } else setTweetsArr(prevState => [...prevState, ...response]);
-    if (response.length === 0) {
-      setNotCard(true);
-    }
-  });
-};
+import { TweetsCards } from '../../components/TweetsCards/TweetsList';
+import { Filter } from '../../components/Filter/Filter';
+
+import { fetch } from '../../helpers/fetch';
+import { fetchFollow } from '../../helpers/fetch';
+import { fetchFollowing } from '../../helpers/fetch';
 
 export const Tweets = () => {
   const location = useLocation();
@@ -22,17 +16,26 @@ export const Tweets = () => {
   const [page, setPage] = useState(1);
   const [notCard, setNotCard] = useState(false);
   const limit = 3;
+  const [filter, setFilter] = useState('showAll');
+
 
   useEffect(() => {
-    fetch({ page, limit, setTweetsArr, setNotCard });
-  }, [page]);
-  
-  // useEffect(() => {
-  //   console.log('tweetsArr IIIIIIIIIIII', tweetsArr);
+    if (filter === 'showAll') {
+       fetch({ page, limit, setTweetsArr, setNotCard });
+    } else if (filter === 'follow') {
+      console.log('follow');
+      fetchFollow({ setTweetsArr });
+    } else if (filter === 'followings') {
+      console.log('followings');
+      fetchFollowing({ setTweetsArr });
+    } else {
+      fetch({ page, limit, setTweetsArr, setNotCard });
+    }
+  }, [page, filter]);
 
-  // }, [tweetsArr]);
-
-
+  const onChange = e => {
+    setFilter(e.value);
+  };
 
   const goBack = location.state?.from ?? '/';
   const addPage = () => {
@@ -46,6 +49,7 @@ export const Tweets = () => {
           Go back
         </NavLink>
       </button>
+      <Filter onChange={onChange} filter={filter} />
       <TweetsCards
         tweetsArr={tweetsArr}
         page={page}
@@ -53,7 +57,7 @@ export const Tweets = () => {
         setTweetsArr={setTweetsArr}
         setNotCard={setNotCard}
         // update={update}
-            />
+      />
       {!notCard && (
         <button type="button" className={css.btnBack} onClick={addPage}>
           <div className={css.btnBackText}>Load More</div>

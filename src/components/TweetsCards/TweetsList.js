@@ -1,6 +1,6 @@
 import css from './TweetsCards.module.css';
 
-import { TweetsCardOne } from './TweetsCardOne';
+import { TweetsCardOne } from './TweetsCard';
 // axios.defaults.baseURL = 'https://63bc0c08fa38d30d85b994d7.mockapi.io';
 
 export const TweetsCards = ({ tweetsArr }) => {
