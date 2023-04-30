@@ -8,10 +8,10 @@ const options = [
   { value: 'followings', label: 'Followings' },
 ];
 
-export const Filter = ({ onChange, filter }) => {
-  return (
+export const Filter = ({ onChange }) => {
+       return (
     <div className={css.select}>
-      <Select options={options} onChange={onChange} value={filter} />
+      <Select options={options} onChange={onChange} />
     </div>
   );
 };

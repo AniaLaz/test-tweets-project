@@ -48,11 +48,18 @@ export const TweetsCardOne = ({
     }
   };
 
+
+
   return (
     <li className={css.item}>
-      <button type="button" className={css.logo}>
+      <a
+        className={css.logo}
+        href="https://github.com/AniaLaz"
+        target="_blank"
+        rel="noreferrer"
+      >
         <img src={imgLogo} alt="fone" />
-      </button>
+      </a>
       <img src={imgFon} alt="fone" className={css.imgFon} />
       <img src={imgString} alt="fone" className={css.imgString} />
       <div className={css.imgRingBox}>

@@ -39,7 +39,6 @@ export const fetchFollow = ({ setTweetsArr }) => {
       option => option.followersFlag === true
     );
     setTweetsArr(followersArr);
-    console.log('response fetchFollow', followersArr);
   });
 };
 
@@ -49,6 +48,5 @@ export const fetchFollowing = ({ setTweetsArr }) => {
       option => option.followersFlag === false
     );
     setTweetsArr(followersArr);
-    console.log('response fetchFollow', followersArr);
   });
 };

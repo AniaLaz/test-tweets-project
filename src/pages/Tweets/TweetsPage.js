@@ -28,9 +28,7 @@ export const Tweets = () => {
     } else if (filter === 'followings') {
       console.log('followings');
       fetchFollowing({ setTweetsArr });
-    } else {
-      fetch({ page, limit, setTweetsArr, setNotCard });
-    }
+    } 
   }, [page, filter]);
 
   const onChange = e => {
@@ -49,7 +47,7 @@ export const Tweets = () => {
           Go back
         </NavLink>
       </button>
-      <Filter onChange={onChange} filter={filter} />
+      <Filter onChange={onChange} />
       <TweetsCards
         tweetsArr={tweetsArr}
         page={page}
@@ -58,11 +56,13 @@ export const Tweets = () => {
         setNotCard={setNotCard}
         // update={update}
       />
-      {!notCard && (
-        <button type="button" className={css.btnBack} onClick={addPage}>
-          <div className={css.btnBackText}>Load More</div>
-        </button>
-      )}
+      {(!notCard &&
+        filter !== 'follow' &&
+        filter !== 'followings')&& (
+          <button type="button" className={css.btnBack} onClick={addPage}>
+            <div className={css.btnBackText}>Load More</div>
+          </button>
+        )}
     </div>
   );
 };
