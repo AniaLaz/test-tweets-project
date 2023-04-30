@@ -14,8 +14,6 @@ export const TweetsCardOne = ({
   followers,
   avatar,
   followersFlag,
-  tweetsArr,
-  tweet,
 }) => {
   const [flag, setFlag] = useState(false);
   const [folowwersF, setfolowwersF] = useState(false);
@@ -23,7 +21,7 @@ export const TweetsCardOne = ({
   useEffect(() => {
     setFlag(followersFlag);
     setfolowwersF(followers);
-  }, []);
+  }, [followersFlag, followers]);
 
   const updateCard = async id => {
     try {
@@ -31,14 +29,14 @@ export const TweetsCardOne = ({
         console.log(flag);
         console.log(followers);
         console.log(folowwersF);
-        const user = await axios.put(`/users/${id}`, {
+        await axios.put(`/users/${id}`, {
           followers: folowwersF - 1,
           followersFlag: true,
         });
 
         setfolowwersF(folowwersF - 1);
       } else {
-        const userFalse = await axios.put(`/users/${id}`, {
+        await axios.put(`/users/${id}`, {
           followers: folowwersF + 1,
           followersFlag: false,
         });

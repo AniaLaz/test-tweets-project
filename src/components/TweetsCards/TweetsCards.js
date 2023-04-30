@@ -17,8 +17,6 @@ export const TweetsCards = ({ tweetsArr }) => {
             followers={tweet.followers}
             avatar={tweet.avatar}
             followersFlag={tweet.followersFlag}
-            tweetsArr={tweetsArr}
-            tweet={tweet}
           />
         ))}
       </ul>
