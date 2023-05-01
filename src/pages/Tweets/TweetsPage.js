@@ -20,8 +20,6 @@ export const Tweets = () => {
   const pageFollowStart=0;
   const [pageFollowFinish, setPageFollowFinish] = useState(3);
 
-// console.log(tweetsArr.length % 3);
-
   useEffect(() => {
     if (filter === 'showAll') {
       fetch({ page, limit, setTweetsArr, setNotCard });
@@ -74,8 +72,7 @@ export const Tweets = () => {
         setTweetsArr={setTweetsArr}
         setNotCard={setNotCard}
       />
-      {!notCard &&
-              tweetsArr.length && (
+      {!notCard  && (
           <button type="button" className={css.btnBack} onClick={addPage}>
             <div className={css.btnBackText}>Load More</div>
           </button>
