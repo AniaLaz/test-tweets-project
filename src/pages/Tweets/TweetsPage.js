@@ -17,27 +17,41 @@ export const Tweets = () => {
   const [notCard, setNotCard] = useState(false);
   const limit = 3;
   const [filter, setFilter] = useState('showAll');
+  const pageFollowStart=0;
+  const [pageFollowFinish, setPageFollowFinish] = useState(3);
 
+// console.log(tweetsArr.length % 3);
 
   useEffect(() => {
     if (filter === 'showAll') {
-       fetch({ page, limit, setTweetsArr, setNotCard });
+      fetch({ page, limit, setTweetsArr, setNotCard });
     } else if (filter === 'follow') {
-      console.log('follow');
-      fetchFollow({ setTweetsArr });
+      fetchFollow({
+        pageFollowStart,
+        pageFollowFinish,
+        setTweetsArr,
+        setNotCard,
+      });
     } else if (filter === 'followings') {
-      console.log('followings');
       fetchFollowing({ setTweetsArr });
-    } 
-  }, [page, filter]);
+    }
+  }, [page, filter, pageFollowFinish]);
 
-  const onChange = e => {
-    setFilter(e.value);
+  const onChange = ({ value }) => {
+    setTweetsArr([]);
+    setPage(1);
+    setFilter(value);
+    setPageFollowFinish(3);
+    setNotCard(false);
   };
 
   const goBack = location.state?.from ?? '/';
   const addPage = () => {
     setPage(page + 1);
+    if (filter === 'follow') {
+      // setPageFollowStart(pageFollowStart + 3);
+      setPageFollowFinish(pageFollowFinish+3);
+    }
   };
 
   return (
@@ -54,12 +68,9 @@ export const Tweets = () => {
         limit={limit}
         setTweetsArr={setTweetsArr}
         setNotCard={setNotCard}
-        // update={update}
       />
       {!notCard &&
-        filter !== 'follow' &&
-        filter !== 'followings' &&
-        tweetsArr.length && (
+              tweetsArr.length && (
           <button type="button" className={css.btnBack} onClick={addPage}>
             <div className={css.btnBackText}>Load More</div>
           </button>

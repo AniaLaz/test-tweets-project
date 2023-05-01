@@ -14,14 +14,16 @@ export const TweetsCardOne = ({
   followers,
   avatar,
   followersFlag,
+
 }) => {
   const [flag, setFlag] = useState(false);
   const [folowwersF, setfolowwersF] = useState(false);
 
+  
   useEffect(() => {
     setFlag(followersFlag);
     setfolowwersF(followers);
-  }, [followersFlag, followers]);
+    }, [followersFlag, followers]);
 
   const updateCard = async id => {
     try {
@@ -44,8 +46,6 @@ export const TweetsCardOne = ({
       console.log(error.message);
     }
   };
-
-
 
   return (
     <li className={css.item}>
