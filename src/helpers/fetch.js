@@ -43,7 +43,7 @@ export const fetchFollow = ({
     );
     const firstPage = followersArr.slice(pageFollowStart, pageFollowFinish);
     setTweetsArr(firstPage);
-    if (firstPage.length % 3 !== 0) {
+    if (firstPage.length === followersArr.length) {
       setNotCard(true);
     }
   });
@@ -61,7 +61,7 @@ export const fetchFollowing = ({
     );
     const firstPage = followersArr.slice(pageFollowStart, pageFollowFinish);
     setTweetsArr(firstPage);
-    if (firstPage.length % 3 !== 0) {
+    if (firstPage.length === followersArr.length) {
       setNotCard(true);
     }
   });
