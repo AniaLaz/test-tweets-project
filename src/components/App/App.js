@@ -24,17 +24,17 @@ const Tweets = lazy(() =>
 
 
 const StyledLink = styled(NavLink)`
+
   color: black;
   margin-right: 50px;
-
+  text-decoration: none;
 
   &.active {
-    color: red;
+    color: rgba(71, 28, 169, 1);
   }
 `;
 const Styled = styled('div')`
   width: 90vw;
-
   display: block;
   margin: auto;
 `;

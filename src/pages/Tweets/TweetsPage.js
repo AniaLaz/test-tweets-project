@@ -56,9 +56,10 @@ export const Tweets = () => {
         setNotCard={setNotCard}
         // update={update}
       />
-      {(!notCard &&
+      {!notCard &&
         filter !== 'follow' &&
-        filter !== 'followings')&& (
+        filter !== 'followings' &&
+        tweetsArr.length && (
           <button type="button" className={css.btnBack} onClick={addPage}>
             <div className={css.btnBackText}>Load More</div>
           </button>

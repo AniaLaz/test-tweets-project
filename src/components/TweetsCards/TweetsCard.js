@@ -26,9 +26,6 @@ export const TweetsCardOne = ({
   const updateCard = async id => {
     try {
       if (!flag) {
-        console.log(flag);
-        console.log(followers);
-        console.log(folowwersF);
         await axios.put(`/users/${id}`, {
           followers: folowwersF - 1,
           followersFlag: true,

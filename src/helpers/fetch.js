@@ -14,7 +14,7 @@ export const fetchTweets = async ({ page, limit }) => {
 export const fetchAll = async () => {
   try {
     const response = await axios.get(`/users`);
-    console.log('response.data', response.data);
+    // console.log('response.data', response.data);
     return response.data;
   } catch (error) {
     return error.message;
