@@ -156,6 +156,7 @@
   padding: 14px;
   border-radius: 4px;
   background-color: #ebd8ff;
+   border: 1px solid  #ebd8ff;
   text-transform: uppercase;
   font-family: 'Montserrat';
   font-size: 18px;
@@ -166,6 +167,7 @@
 
 .button:hover {
   background-color:  #c695fa;
+    border: 1px solid  #c695fa;
 }
 
 .buttonTrue {
@@ -183,5 +185,6 @@
 }
 
 .buttonTrue:hover {
-   background-color: #8adfc0;
+   background-color: #40aa83;
+    border: 1px solid  #40aa83;
 }
