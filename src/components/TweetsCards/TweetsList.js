@@ -1,7 +1,6 @@
 import css from './TweetsCards.module.css';
 
 import { TweetsCardOne } from './TweetsCard';
-// axios.defaults.baseURL = 'https://63bc0c08fa38d30d85b994d7.mockapi.io';
 
 export const TweetsCards = ({
   tweetsArr,
@@ -25,8 +24,7 @@ export const TweetsCards = ({
           ))}
         </ul>
       ) : (
-        // <div className={css.text}>...loading</div>
-        <div className={css.loader}>
+         <div className={css.loader}>
           <div className={css.loader_inner}></div>
         </div>
       )}

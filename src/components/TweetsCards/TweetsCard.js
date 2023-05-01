@@ -14,16 +14,14 @@ export const TweetsCardOne = ({
   followers,
   avatar,
   followersFlag,
-
 }) => {
   const [flag, setFlag] = useState(false);
   const [folowwersF, setfolowwersF] = useState(false);
 
-  
   useEffect(() => {
     setFlag(followersFlag);
     setfolowwersF(followers);
-    }, [followersFlag, followers]);
+  }, [followersFlag, followers]);
 
   const updateCard = async id => {
     try {
@@ -90,7 +88,6 @@ export const TweetsCardOne = ({
             type="button"
             className={css.button}
             onClick={() => {
-              // click({ id });
               setFlag(false);
               updateCard(id);
             }}
@@ -102,7 +99,6 @@ export const TweetsCardOne = ({
             type="button"
             className={css.buttonTrue}
             onClick={() => {
-              // click({ id });
               setFlag(true);
               updateCard(id);
             }}
