@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/test-tweets-project/static/css/main.8926941a.css",
-    "main.js": "/test-tweets-project/static/js/main.27436b06.js",
+    "main.js": "/test-tweets-project/static/js/main.06bcdcf7.js",
     "static/css/290.962c457d.chunk.css": "/test-tweets-project/static/css/290.962c457d.chunk.css",
     "static/js/290.4b770328.chunk.js": "/test-tweets-project/static/js/290.4b770328.chunk.js",
     "static/css/640.8c033e0a.chunk.css": "/test-tweets-project/static/css/640.8c033e0a.chunk.css",
-    "static/js/640.b85ac888.chunk.js": "/test-tweets-project/static/js/640.b85ac888.chunk.js",
+    "static/js/640.dbbc1717.chunk.js": "/test-tweets-project/static/js/640.dbbc1717.chunk.js",
     "static/js/605.7d6f9e07.chunk.js": "/test-tweets-project/static/js/605.7d6f9e07.chunk.js",
     "static/media/boy.svg": "/test-tweets-project/static/media/boy.ac85bc0b7eed23122fbe99f9bbfb2c62.svg",
     "static/media/2204_w046_n004_88b_p1_88.jpg": "/test-tweets-project/static/media/2204_w046_n004_88b_p1_88.4b2a2c202308007fbec5.jpg",
@@ -14,15 +14,15 @@
     "static/media/rectangle.svg": "/test-tweets-project/static/media/rectangle.90e23cf44c8259d5b2f74d75abbbd5cd.svg",
     "index.html": "/test-tweets-project/index.html",
     "main.8926941a.css.map": "/test-tweets-project/static/css/main.8926941a.css.map",
-    "main.27436b06.js.map": "/test-tweets-project/static/js/main.27436b06.js.map",
+    "main.06bcdcf7.js.map": "/test-tweets-project/static/js/main.06bcdcf7.js.map",
     "290.962c457d.chunk.css.map": "/test-tweets-project/static/css/290.962c457d.chunk.css.map",
     "290.4b770328.chunk.js.map": "/test-tweets-project/static/js/290.4b770328.chunk.js.map",
     "640.8c033e0a.chunk.css.map": "/test-tweets-project/static/css/640.8c033e0a.chunk.css.map",
-    "640.b85ac888.chunk.js.map": "/test-tweets-project/static/js/640.b85ac888.chunk.js.map",
+    "640.dbbc1717.chunk.js.map": "/test-tweets-project/static/js/640.dbbc1717.chunk.js.map",
     "605.7d6f9e07.chunk.js.map": "/test-tweets-project/static/js/605.7d6f9e07.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8926941a.css",
-    "static/js/main.27436b06.js"
+    "static/js/main.06bcdcf7.js"
   ]
 }
