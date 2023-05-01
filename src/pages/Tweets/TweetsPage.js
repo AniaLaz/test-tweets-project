@@ -33,7 +33,10 @@ export const Tweets = () => {
         setNotCard,
       });
     } else if (filter === 'followings') {
-      fetchFollowing({ setTweetsArr });
+      fetchFollowing({    pageFollowStart,
+        pageFollowFinish,
+        setTweetsArr,
+        setNotCard, });
     }
   }, [page, filter, pageFollowFinish]);
 
@@ -49,9 +52,11 @@ export const Tweets = () => {
   const addPage = () => {
     setPage(page + 1);
     if (filter === 'follow') {
-      // setPageFollowStart(pageFollowStart + 3);
       setPageFollowFinish(pageFollowFinish+3);
     }
+        if (filter === 'followings') {
+          setPageFollowFinish(pageFollowFinish + 3);
+        }
   };
 
   return (

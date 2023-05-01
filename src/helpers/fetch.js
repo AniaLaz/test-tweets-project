@@ -49,11 +49,20 @@ export const fetchFollow = ({
   });
 };
 
-export const fetchFollowing = ({ setTweetsArr }) => {
+export const fetchFollowing = ({
+  setTweetsArr,
+  pageFollowStart,
+  pageFollowFinish,
+  setNotCard,
+}) => {
   fetchAll().then(response => {
     const followersArr = response.filter(
       option => option.followersFlag === false
     );
-    setTweetsArr(followersArr);
+    const firstPage = followersArr.slice(pageFollowStart, pageFollowFinish);
+    setTweetsArr(firstPage);
+    if (firstPage.length % 3 !== 0) {
+      setNotCard(true);
+    }
   });
 };
